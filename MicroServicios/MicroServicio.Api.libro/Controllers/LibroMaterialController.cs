@@ -1,4 +1,6 @@
 ﻿
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using MediatR;
 using MicroServicio.Api.libro.Apps;
@@ -20,6 +22,18 @@ namespace MicroServicio.Api.libro.Controllers
         public async Task<ActionResult<Unit>> Crear(Nuevo.Ejecuta data) 
         {
             return await _mediator.Send(data);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<LibroMaterialDto>>> GetLibro()
+        {
+            return await _mediator.Send(new Consuta.Ejecuta());
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<LibroMaterialDto>> GetLibroUnico(Guid id)
+        {
+            return await _mediator.Send(new ConsultaFiltro.LibroUnico { LibroId = id });
         }
     }
 }

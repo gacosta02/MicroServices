@@ -10,6 +10,7 @@ using MediatR;
 using FluentValidation;
 using System.Reflection;
 using FluentValidation.AspNetCore;
+using AutoMapper;
 
 namespace MicroServicio.Api.libro
 {
@@ -32,6 +33,8 @@ namespace MicroServicio.Api.libro
             });
 
             services.AddMediatR(typeof(Nuevo.Manejador).Assembly);
+
+            services.AddAutoMapper(typeof(Consuta.Ejecuta));
         
     
             //services.AddControllers().AddNewtonsoftJson();
